@@ -3,8 +3,7 @@
 name: Lint # name of the action (displayed in the github interface)
 
 on: # event list
-  pull_request_target:
-    types: [opened]
+  pull_request:
 env: # environment variables (available in any part of the action)
   NODE_VERSION: 14
 
