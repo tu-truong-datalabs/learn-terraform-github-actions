@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: INSTALL PROJECT DEPENDENCIES (YARN)
-        run: yarn install
+        run: echo ${{github.event.base_ref}}
 
       - name: UNIT TEST (JEST)
         run: yarn test
