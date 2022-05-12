@@ -2,31 +2,14 @@ name: Staging Deployment
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - v*
 
 jobs:
   deploy:
     runs-on: ubuntu-18.04
     # environment: staging
     steps:
-      - name: CHECKOUT
-        uses: actions/checkout@master
-
-      - name: USE NODEJS
-        uses: actions/setup-node@v3
 
       - name: INSTALL PROJECT DEPENDENCIES (YARN)
-        run: echo "${{ github.ref }}"
-
-      - name: UNIT TEST (JEST)
-        run: yarn test
-
-      - name: BUILD
-        run: CI=false yarn build:stg
-
-      - name: DEPLOY
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_STG }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_STG }}
-        run: aws s3 sync ./build/ s3://tekkin-app-stg --delete
+        run: echo "${{ github.ref_name }}"
